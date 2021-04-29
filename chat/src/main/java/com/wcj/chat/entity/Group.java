@@ -4,6 +4,7 @@ import io.netty.channel.Channel;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author 翁丞健
@@ -16,5 +17,5 @@ public class Group {
 
     private String name;
 
-    private List<String> users;
+    private Set<String> users;
 }

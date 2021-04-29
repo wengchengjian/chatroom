@@ -1,5 +1,7 @@
 package com.wcj.chat.client;
 
+import com.wcj.chat.client.handler.CreateGroupResponseHandler;
+import com.wcj.chat.client.handler.JoinGroupResponseHandler;
 import com.wcj.chat.protocol.Packet.handler.PacketCodecHandler;
 import com.wcj.chat.client.console.ConsoleManager;
 import com.wcj.chat.client.handler.LoginResponseHandler;
@@ -48,8 +50,14 @@ public class FaceToFaceClient {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ch.pipeline().addLast(new PacketCodecHandler());
+
                         ch.pipeline().addLast(new LoginResponseHandler());
+
                         ch.pipeline().addLast(new MessageResponseHandler());
+
+                        ch.pipeline().addLast(new CreateGroupResponseHandler());
+
+                        ch.pipeline().addLast(new JoinGroupResponseHandler());
 
                     }
                 });

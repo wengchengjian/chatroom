@@ -6,9 +6,7 @@ import com.wcj.chat.client.console.ConsoleCommand;
 import com.wcj.chat.enums.AttributeKeyEnums;
 import io.netty.channel.Channel;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * @Author 翁丞健
@@ -25,15 +23,16 @@ public class CreateGroupConsoleCommand implements ConsoleCommand {
         System.out.print("请输入群聊名称: ");
         String groupName = in.nextLine();
 
-        List<String> users = new ArrayList<>();
+        Set<String> users = new HashSet<>();
 
         users.add(channel.attr(AttributeKeyEnums.SESSION).get().getUsername());
 
-        System.out.println("请输入需要邀请的用户id:");
-        while(!in.nextLine().equals("finished")){
-            String username = in.nextLine();
-            users.add(username);
-        }
+        String username;
+       do{
+           System.out.print("请输入邀请的用户id:");
+           username = in.nextLine();
+           users.add(username);
+       }while(!username.equals("finished"));
         Group group = new Group();
 
         group.setName(groupName);

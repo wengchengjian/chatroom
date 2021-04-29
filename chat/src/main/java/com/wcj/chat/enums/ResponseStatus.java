@@ -6,6 +6,10 @@ package com.wcj.chat.enums;
  * @Version 1.0.0
  */
 public enum ResponseStatus {
+
+    /**
+     *
+     */
     SUCCESS(200,"响应成功"),
     FAILED(201,"响应失败");
 
@@ -22,5 +26,9 @@ public enum ResponseStatus {
 
     public int getCode(){
         return this.code;
+    }
+
+    public void setMsg(String msg){
+        this.msg = msg;
     }
 }

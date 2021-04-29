@@ -2,7 +2,7 @@ package com.wcj.chat.enums;
 
 import com.wcj.chat.client.console.ConsoleCommand;
 import com.wcj.chat.client.console.impl.*;
-import com.weng.faceToface.client.console.impl.*;
+
 
 /**
  * @Author 翁丞健

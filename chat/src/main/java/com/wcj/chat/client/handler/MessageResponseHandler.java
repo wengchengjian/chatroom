@@ -1,6 +1,7 @@
 package com.wcj.chat.client.handler;
 
 import com.wcj.chat.entity.Message;
+import com.wcj.chat.enums.ResponseStatus;
 import com.wcj.chat.protocol.Packet.response.MessageResponsePacket;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -14,14 +15,18 @@ public class MessageResponseHandler extends SimpleChannelInboundHandler<MessageR
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageResponsePacket msg) throws Exception {
         MessageResponsePacket response = msg;
-        if(response!=null){
-            Message message = response.getMsg();
+        if(response!=null) {
+            if (response.getResponseStatus() == ResponseStatus.SUCCESS) {
+                Message message = response.getMsg();
 
-            String mesge = message.getMsg();
+                String mesge = message.getMsg();
 
-            String username = message.getSourceUsername();
+                String username = message.getSourceUsername();
 
-            System.out.println("用户["+username+"]"+"--->发来消息: "+mesge);
+                System.out.println("用户[" + username + "]" + "--->发来消息: " + mesge);
+            }
+        }else{
+
         }
     }
 }

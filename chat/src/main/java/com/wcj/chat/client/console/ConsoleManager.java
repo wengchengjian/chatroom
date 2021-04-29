@@ -15,7 +15,7 @@ public class ConsoleManager implements ConsoleCommand{
 
     @Override
     public void exec(Channel channel) {
-        System.out.print("请输入指令: " );
+        System.out.println("请输入指令: " );
         Scanner in  = new Scanner(System.in);
         String str = in.nextLine();
         exec(str,channel);

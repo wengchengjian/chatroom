@@ -1,6 +1,8 @@
 package com.wcj.chat.server;
 
 import com.wcj.chat.protocol.Packet.handler.PacketCodecHandler;
+import com.wcj.chat.server.handler.CreateGroupRequestHandler;
+import com.wcj.chat.server.handler.JoinGroupRequestHandler;
 import com.wcj.chat.server.handler.LoginRequestHandler;
 import com.wcj.chat.server.handler.MessageRequestHandler;
 import io.netty.bootstrap.ServerBootstrap;
@@ -40,9 +42,11 @@ public class FaceToFaceServer {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
 
-                        ch.pipeline().addLast(new PacketCodecHandler());
-                        ch.pipeline().addLast(new LoginRequestHandler());
-                        ch.pipeline().addLast(new MessageRequestHandler());
+                        ch.pipeline().addLast(new PacketCodecHandler())
+                                    .addLast(new LoginRequestHandler())
+                                    .addLast(new MessageRequestHandler())
+                                    .addLast(new CreateGroupRequestHandler())
+                                    .addLast(new JoinGroupRequestHandler());
 
                     }
                 });

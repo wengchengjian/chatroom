@@ -7,6 +7,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @Author 翁丞健
@@ -19,7 +20,7 @@ public class JoinGroupResponseHandler extends SimpleChannelInboundHandler<JoinGr
         JoinGroupResponsePacket response = msg;
         String groupName = response.getGroupName();
         System.out.println("成功加入["+groupName+"]");
-        List<Channel> users = SessionUtils.getGroupMap().get(groupName).getUsers();
+        Set<String> users = SessionUtils.getGroupMap().get(groupName).getUsers();
         System.out.println(SessionUtils.printList(users));
     }
 }

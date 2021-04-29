@@ -20,14 +20,10 @@ public class JoinGroupConsoleCommand implements ConsoleCommand {
         Scanner in = new Scanner(System.in);
         System.out.print("请输入群聊名称: ");
         String groupName;
-        for(;;){
-            groupName = in.nextLine();
-            if(SessionUtils.getGroupMap().containsKey(groupName)){
-                break;
-            }else{
-                System.out.println("群聊不存在");
-            }
-        }
+
+        groupName = in.nextLine();
+
+
 
 
         JoinGroupRequestpacket joinGroupRequestpacket = new JoinGroupRequestpacket();

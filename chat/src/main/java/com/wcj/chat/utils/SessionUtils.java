@@ -8,6 +8,7 @@ import io.netty.channel.Channel;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -34,7 +35,6 @@ public class SessionUtils {
                 sessionMap.put(user,channel);
 
             }
-        System.out.println("sessionMap："+sessionMap.size());
             channel.attr(AttributeKeyEnums.SESSION).set(user);
 
 
@@ -56,7 +56,6 @@ public class SessionUtils {
         for(Map.Entry<User,Channel> entry : sessionMap.entrySet()){
             User user = entry.getKey();
             Channel channel  = entry.getValue();
-            System.out.println(user);
             if(user.getUsername().equals(username)){
                 return  channel;
             }
@@ -68,10 +67,10 @@ public class SessionUtils {
         return channel.attr(AttributeKeyEnums.SESSION).get();
     }
 
-    public static String printList(List<Channel> channelList){
+    public static String printList(Set<String> channelList){
         StringBuilder str = new StringBuilder("群内成员有:[");
-        for(Channel channel: channelList){
-            str.append(channel.attr(AttributeKeyEnums.SESSION).get().getUsername()+" ");
+        for(String user: channelList){
+            str.append(user+" ");
         }
         str.append("]");
         return str.toString();
