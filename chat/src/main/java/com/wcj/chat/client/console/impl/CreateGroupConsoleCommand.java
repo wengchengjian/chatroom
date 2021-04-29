@@ -28,11 +28,13 @@ public class CreateGroupConsoleCommand implements ConsoleCommand {
         users.add(channel.attr(AttributeKeyEnums.SESSION).get().getUsername());
 
         String username;
-       do{
-           System.out.print("请输入邀请的用户id:");
-           username = in.nextLine();
-           users.add(username);
-       }while(!username.equals("finished"));
+        for(;;){
+            System.out.print("请输入邀请的用户id:");
+            if((username = in.nextLine()).equals("finished")){
+                break;
+            }
+            users.add(username);
+        }
         Group group = new Group();
 
         group.setName(groupName);

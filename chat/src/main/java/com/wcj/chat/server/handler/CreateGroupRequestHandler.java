@@ -60,18 +60,20 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
 
             message.setMsg(str.toString());
             if(!message.getMsg().isEmpty()){
+                messageResponsePacket.setMsg(message);
                 ctx.channel().writeAndFlush(messageResponsePacket);
             }
 
             SessionUtils.setGroup(group);
-
-
+            message.setMsg(SessionUtils.printList(group.getUsers()));
+            messageResponsePacket.setResponseStatus(ResponseStatus.SUCCESS);
 
             createGroupResponsePacket.setResponseStatus(ResponseStatus.SUCCESS);
             createGroupResponsePacket.setGroup(group);
             for(String user: validateUsers){
-                SessionUtils.getChannel(user).writeAndFlush(createGroupResponsePacket);
+                SessionUtils.getChannel(user).writeAndFlush(messageResponsePacket);
             }
+            ctx.channel().writeAndFlush(createGroupResponsePacket);
 
 
 

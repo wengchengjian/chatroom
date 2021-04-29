@@ -1,14 +1,8 @@
 package com.wcj.chat.protocol.Packet.command;
 
 import com.wcj.chat.protocol.Packet.Packet;
-import com.wcj.chat.protocol.Packet.response.CreateGroupResponsePacket;
-import com.wcj.chat.protocol.Packet.request.CreateGroupRequestPacket;
-import com.wcj.chat.protocol.Packet.request.JoinGroupRequestpacket;
-import com.wcj.chat.protocol.Packet.request.LoginRequestPacket;
-import com.wcj.chat.protocol.Packet.request.MessageRequestPacket;
-import com.wcj.chat.protocol.Packet.response.JoinGroupResponsePacket;
-import com.wcj.chat.protocol.Packet.response.LoginResponsePacket;
-import com.wcj.chat.protocol.Packet.response.MessageResponsePacket;
+import com.wcj.chat.protocol.Packet.request.*;
+import com.wcj.chat.protocol.Packet.response.*;
 
 /**
  * @Author 翁丞健
@@ -31,9 +25,13 @@ public enum Command {
     CREATE_REQUEST((byte)7, CreateGroupRequestPacket.class),
     CREATE_RESPONSE((byte)8, CreateGroupResponsePacket.class),
 
-    LOGOUT_REQUEST((byte) 9, LoginRequestPacket.class),
-    LOGOUT_RESPONSE((byte) 10, LoginResponsePacket.class);
+    LOGOUT_REQUEST((byte) 9, LogoutRequestPacket.class),
+    LOGOUT_RESPONSE((byte) 10, LogoutResponsePacket.class),
 
+    LIST_GROUP_REQUEST((byte) 11, ListGroupMemberRequestPacket.class),
+    LIST_GROUP_RESPONSE((byte)12, ListGroupMemberResponsePacket.class),
+
+    SEND_GROUP_REQUEST((byte) 13,SendGroupRequestPacket.class);
 
     byte id;
     Class< ? extends Packet> packet;

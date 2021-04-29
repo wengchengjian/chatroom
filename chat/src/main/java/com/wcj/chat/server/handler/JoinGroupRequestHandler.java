@@ -26,6 +26,8 @@ public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGro
         JoinGroupRequestpacket request = msg;
         String groupName = request.getGroupName();
 
+        String username =ctx.channel().attr(AttributeKeyEnums.SESSION).get().getUsername();
+
         Group group= SessionUtils.getGroupMap().get(groupName);
         MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
         messageResponsePacket.setResponseStatus(ResponseStatus.SUCCESS);
@@ -36,12 +38,19 @@ public class JoinGroupRequestHandler extends SimpleChannelInboundHandler<JoinGro
 
 
         if(group==null){
+            message.setMsg("没有这个群聊");
             messageResponsePacket.setMsg(message);
             ctx.channel().writeAndFlush(messageResponsePacket);
             return;
         }
         Set<String> users= group.getUsers();
-        String username =ctx.channel().attr(AttributeKeyEnums.SESSION).get().getUsername();
+        for(String usr : users){
+            message.setMsg(username+"加入["+groupName+"]群聊");
+            messageResponsePacket.setMsg(message);
+            messageResponsePacket.setResponseStatus(ResponseStatus.SUCCESS);
+            ctx.channel().writeAndFlush(messageResponsePacket);
+        }
+
 
         users.add(username);
 

@@ -17,7 +17,11 @@ public enum ConsoleCommandEnums {
     LOGIN("login", LoginConsoleCommand.LOGIN_CONSOLE_COMMAND),
     SEND("sendMessage", MessageConsoleCommand.MESSAGE_CONSOLE_COMMAND),
     JOIN_GROUP("join", JoinGroupConsoleCommand.JOIN_CONSOLE_COMMAND),
-    CREATE_GROUP("create", CreateGroupConsoleCommand.CREATE_CONSOLE_COMMAND);
+    CREATE_GROUP("create", CreateGroupConsoleCommand.CREATE_CONSOLE_COMMAND),
+    LIST_GROUP("list",ListGroupMemberConsoleCommand.LIST_GROUP_COMMAND),
+    SEND_GROUP("send_group",SendGroupConsoleCommand.SEND_GROUP_COMMAND);
+
+
     String desc;
     ConsoleCommand consoleCommand;
 

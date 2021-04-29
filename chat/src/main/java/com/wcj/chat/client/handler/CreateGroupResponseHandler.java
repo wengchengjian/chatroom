@@ -21,7 +21,7 @@ public class CreateGroupResponseHandler extends SimpleChannelInboundHandler<Crea
                 if(response.getResponseStatus()== ResponseStatus.SUCCESS){
                     Group group = response.getGroup();
                     System.out.println("创建群聊:["+group.getName()+"]成功");
-                    System.out.println(SessionUtils.printList(group.getUsers()));
+
                 }
 
 

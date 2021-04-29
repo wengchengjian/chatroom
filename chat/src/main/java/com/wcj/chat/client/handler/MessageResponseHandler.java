@@ -23,7 +23,9 @@ public class MessageResponseHandler extends SimpleChannelInboundHandler<MessageR
 
                 String username = message.getSourceUsername();
 
-                System.out.println("用户[" + username + "]" + "--->发来消息: " + mesge);
+                System.out.println("[" + username + "]" + "--->发来消息: " + mesge);
+            }else{
+                System.out.println(ResponseStatus.FAILED.getMsg()+"--->" + response.getMsg().getMsg());
             }
         }else{
 

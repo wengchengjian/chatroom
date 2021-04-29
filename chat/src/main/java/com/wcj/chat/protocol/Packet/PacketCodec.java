@@ -22,6 +22,9 @@ public class PacketCodec {
         byteBuf.writeByte(Packet.version);
         byteBuf.writeByte(packet.getSerializerAlgorithm());
         byteBuf.writeByte(packet.getCommand().getId());
+
+
+
         byteBuf.writeInt(bytes.length);
         byteBuf.writeBytes(bytes);
     }

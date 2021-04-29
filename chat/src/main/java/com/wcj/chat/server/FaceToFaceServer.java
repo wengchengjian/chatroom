@@ -1,10 +1,7 @@
 package com.wcj.chat.server;
 
 import com.wcj.chat.protocol.Packet.handler.PacketCodecHandler;
-import com.wcj.chat.server.handler.CreateGroupRequestHandler;
-import com.wcj.chat.server.handler.JoinGroupRequestHandler;
-import com.wcj.chat.server.handler.LoginRequestHandler;
-import com.wcj.chat.server.handler.MessageRequestHandler;
+import com.wcj.chat.server.handler.*;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -14,6 +11,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Author 翁丞健
@@ -46,7 +44,9 @@ public class FaceToFaceServer {
                                     .addLast(new LoginRequestHandler())
                                     .addLast(new MessageRequestHandler())
                                     .addLast(new CreateGroupRequestHandler())
-                                    .addLast(new JoinGroupRequestHandler());
+                                    .addLast(new JoinGroupRequestHandler())
+                                    .addLast(new ListGroupMemberRequestHandler())
+                                    .addLast(new SendGroupRequestHandler());
 
                     }
                 });
